@@ -33,4 +33,18 @@ describe('Check In use Case', () => {
       ResourceNotFoundError,
     );
   });
+  it('should not be able to validate the check-in after 20 minutes of its creation', async () => {
+    vi.setSystemTime(new Date(2024, 0, 1, 13, 40));
+    const createdCheckIn = await checkInRepository.create({
+      gym_id: '123',
+      user_id: '123',
+    });
+    const twentyOneMinutesInMs = 1000 * 60 * 21;
+
+    vi.advanceTimersByTime(twentyOneMinutesInMs);
+
+    expect(() =>
+      sut.execute({ checkInId: createdCheckIn.id }),
+    ).rejects.toBeInstanceOf(Error);
+  });
 });

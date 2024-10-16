@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi, afterEach } from 'vitest';
 
 import { InMemoryCheckInsRepository } from '@/http/repositories/in-memory/in-memory-check-ins-repository';
-import { FetchCheckInsHistoryUseCase } from '@/http/use-cases/fetch-member-checkin-history';
+
 import { getUserMetricsUseCase } from '@/http/use-cases/get-user-metrics';
 
 let checkInRepository: InMemoryCheckInsRepository;
